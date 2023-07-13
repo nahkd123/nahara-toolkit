@@ -1,0 +1,39 @@
+plugins {
+    id 'java-library'
+    id 'eclipse'
+    id 'xyz.jpenilla.run-paper' version '2.0.0'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+}
+
+eclipse {
+    project.name = "Nahara Toolkit - Spigot - Test Plugin"
+}
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url = 'https://oss.sonatype.org/content/repositories/central' }
+}
+
+dependencies {
+    compileOnly "org.spigotmc:spigot-api:${project.minecraft_version}-R0.1-SNAPSHOT"
+    implementation shadow(project(':spigot-naharakit'))
+    implementation shadow(project(':spigot-commands'))
+    implementation shadow(project(':spigot-items'))
+}
+
+println "${project.name}: Targetting Minecraft version ${project.minecraft_version} (API Version ${project.api_version})"
+
+processResources {
+    def props = ["version":version, "api":api_version]
+    filesMatching("**/*.yml") {
+        expand props
+    }
+}
+
+tasks {
+    runServer {
+        minecraftVersion project.minecraft_version
+    }
+}

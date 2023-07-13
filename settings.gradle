@@ -1,0 +1,16 @@
+[
+    'common/commands',
+    'common/nbtstring',
+    'common/localize',
+    'common/tasks',
+
+    'spigot/commands',
+    'spigot/items',
+    'spigot/naharakit',
+    'spigot/testplugin'
+].each { v ->
+    def path = "./${v}"
+    def name = ":${v.replace("/", "-")}"
+    include name
+    project(name).projectDir = new File(path)
+}

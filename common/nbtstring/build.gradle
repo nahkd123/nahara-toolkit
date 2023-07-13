@@ -1,0 +1,20 @@
+plugins {
+    id 'java-library'
+    id 'eclipse'
+}
+
+eclipse {
+    project.name = "Nahara Toolkit - Common - NBT String"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

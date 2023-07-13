@@ -1,0 +1,16 @@
+plugins {
+    id 'java-library'
+    id 'eclipse'
+}
+
+eclipse {
+    project.name = "Nahara Toolkit - Common - Commands"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    api project(':common-localize')
+}

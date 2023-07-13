@@ -1,0 +1,19 @@
+plugins {
+    id 'java-library'
+    id 'eclipse'
+}
+
+eclipse {
+    project.name = "Nahara Toolkit - Spigot - NaharaKit"
+}
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url = 'https://oss.sonatype.org/content/repositories/central' }
+}
+
+dependencies {
+    compileOnly "org.spigotmc:spigot-api:${project.minecraft_version}-R0.1-SNAPSHOT"
+}

@@ -1,0 +1,11 @@
+name: NaharaToolkitTestPlugin
+author: nahkd123
+main: nahara.spigot.test.Main
+
+# Generated values
+version: ${version}
+api-version: ${api}
+
+commands:
+  test:
+    description: "haha testing time!"
