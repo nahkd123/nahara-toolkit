@@ -22,5 +22,8 @@ Projects in ``spigot/`` can only be used with your Spigot plugins.
 - ``nahara-spigot-items``: Items builder + Items NBT manipulation thing.
 - ``nahara-spigot-kit``: NaharaKit for creating main class a bit faster.
 
+### The ``fabric/`` projects
+Projects in ``fabric/`` are Fabric mods and they can be included in your mod with ``modImplementation include(...)`` in ``dependencies``.
+
 ## License
 This project is licensed under MIT license, except we haven't included license headers to our source code yet. We'll do that soon™.
