@@ -2,6 +2,41 @@ plugins {
     id 'eclipse'
 }
 
+def env = System.getenv()
+
 subprojects {
-    // def artifactId = "nahara-${project.name}"
+    apply plugin: 'maven-publish'
+    apply plugin: 'java-library'
+
+    java {
+        withSourcesJar()
+    }
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                groupId = project.group
+                artifactId = "nahara-${project.name}"
+                version = project.version
+                from components.java
+            }
+        }
+
+        repositories {
+            mavenLocal()
+
+            if (env.mavenUrl) {
+                println "Maven Publish: Found Maven URL from envvar"
+                maven {
+                    url env.mavenUrl
+                    if (env.mavenUsername) {
+                        credentials {
+                            username env.mavenUsername
+                            password env.mavenPassword
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
