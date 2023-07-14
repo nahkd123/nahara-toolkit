@@ -4,7 +4,64 @@ A set of (maybe?) useful libraries that you can use in your project.
 The original intention is to write libraries so that I can use them in small projects without rewriting too much code.
 
 ## Using the toolkit
-_Maven repository will be provided in the future!_
+### Jitpack
+You can use Jitpack repository to obtain and use Nahara's Toolkit:
+
+```grovvy
+// build.gradle if you use Gradle
+repositories {
+    // ...
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    // Replace <project name> with names below
+    implementation 'com.github.nahkd123.nahara-toolkit:<project name>:main-SNAPSHOT'
+
+    // Or you can include everything!
+    // Beware: It also includes Spigot libraries and Fabric mods
+    implementation 'com.github.nahkd123:nahara-toolkit:main-SNAPSHOT'
+}
+```
+
+```xml
+<!-- pom.xml if you use Maven -->
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>com.github.nahkd123.nahara-toolkit</groupId>
+        <artifactId>[project name, see below.]</artifactId>
+        <version>main-SNAPSHOT</version>
+    </dependency>
+</dependencies>
+```
+
+### GitHub Packages
+Just like Jitpack, artifacts will be published to GitHub Packages. However, you'll need to put your GitHub personal access token somewhere before you can use the repository.
+
+```gradle
+repositories {
+    maven {
+        url 'https://maven.pkg.github.com/nahkd123/nahara-toolkit'
+        credentials {
+            username 'your GitHub username'
+            password 'ghp_YOURTOKENHERE'
+        }
+    }
+}
+
+dependencies {
+    implementation 'me.nahkd:nahara-common-commands:0.0.1-SNAPSHOT'
+}
+```
+
+> **Personal note**: I wanted to use GitHub Packages instead of Jitpack, but the PAT requirements is what was pulling people away from using it for open source projects. If you work in a company then this is really useful.
 
 ## Overview
 ### The ``common/`` projects
