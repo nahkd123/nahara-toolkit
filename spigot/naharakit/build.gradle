@@ -14,4 +14,9 @@ repositories {
 
 dependencies {
     compileOnly "org.spigotmc:spigot-api:${project.minecraft_version}-R0.1-SNAPSHOT"
+    api project(':common-tasks')
+
+    api project(':spigot-commands')
+    api project(':spigot-items')
+    api project(':spigot-menus')
 }

@@ -120,14 +120,17 @@ public class Menu {
 	}
 
 	public void openMenu(Player player) {
+		ensureListenerRegistered(plugin);
+		player.openInventory(getInventory());
+		Attachments.getGlobal().set(player, Menu.class, this);
+	}
+
+	public static void ensureListenerRegistered(Plugin plugin) {
 		if (!Attachments.getGlobal().has(plugin, MenuEventsListener.class)) {
 			var listener = new MenuEventsListener(plugin);
 			Bukkit.getServer().getPluginManager().registerEvents(listener, plugin);
 			Attachments.getGlobal().set(plugin, MenuEventsListener.class, listener);
 		}
-
-		player.openInventory(getInventory());
-		Attachments.getGlobal().set(player, Menu.class, this);
 	}
 
 	public static int[] getViewSizes(InventoryType type, int size) {

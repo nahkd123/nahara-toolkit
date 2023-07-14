@@ -5,21 +5,21 @@ import java.util.regex.Pattern;
 import nahara.common.attachments.Attachments;
 
 public interface Localizer {
-	public String translate(String key, String defaultMessage);
+	public String translate(String key);
 
 	public static final Pattern PLACEHOLDER = Pattern.compile("\\{([0-9]*)\\}");
 
-	public static Localizer getInstance() {
+	public static Localizer getGlobal() {
 		return Attachments.getGlobal().get(Localizer.class, Localizer.class);
 	}
 
-	public static void setInstance(Localizer localizer) {
+	public static void setGlobal(Localizer localizer) {
 		Attachments.getGlobal().set(Localizer.class, Localizer.class, localizer);
 	}
 
-	public static String of(String key, String defaultMessage, String... replaces) {
-		var i = getInstance();
-		var text = i != null? i.translate(key, defaultMessage) : defaultMessage;
+	public static String of(Localizer localizer, String key, String defaultMessage, String... replaces) {
+		var text = localizer != null? localizer.translate(key) : defaultMessage;
+		if (text == null) text = defaultMessage;
 
 		var matcher = PLACEHOLDER.matcher(text);
 		var current = new int[] { 0 };
@@ -37,7 +37,18 @@ public interface Localizer {
 		});
 	}
 
-	public static String of(String key, String... replaces) {
-		return of(key, key, replaces);
+	public static String of(Localizer localizer, String key, String... replaces) {
+		return of(localizer, key, key, replaces);
+	}
+
+	public static Localizer merge(Localizer... ordered) {
+		return key -> {
+			for (int i = 0; i < ordered.length; i++) {
+				var val = ordered[i].translate(key);
+				if (val != null) return val;
+			}
+
+			return null;
+		};
 	}
 }

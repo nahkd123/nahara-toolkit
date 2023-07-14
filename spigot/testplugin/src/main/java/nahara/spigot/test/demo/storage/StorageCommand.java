@@ -1,6 +1,10 @@
 package nahara.spigot.test.demo.storage;
 
+import org.bukkit.plugin.java.JavaPlugin;
+
+import nahara.common.commands.Command;
 import nahara.common.commands.CommandExecException;
+import nahara.common.localize.LocalizerProvider;
 import nahara.spigot.commands.SpigotCommand;
 import nahara.spigot.commands.SpigotCommandContext;
 import nahara.spigot.test.Main;
@@ -11,7 +15,9 @@ import nahara.spigot.test.Main;
  *
  */
 public class StorageCommand {
-	public static final SpigotCommand COMMAND = new SpigotCommand(SpigotCommand.withName("storage")
+	private static final LocalizerProvider LOCALIZER = () -> JavaPlugin.getPlugin(Main.class).getLocalizer();
+
+	public static final SpigotCommand COMMAND = new SpigotCommand(new Command<SpigotCommandContext>(LOCALIZER, "storage")
 			.require(v -> v.getSender().hasPermission("nahara.demo.storage"))
 			.onExec(StorageCommand::exec));
 

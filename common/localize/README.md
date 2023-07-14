@@ -6,7 +6,7 @@ public static final Message MY_MESSAGE = new Message("my.translation.key", "This
 
 JsonObject myTranslations = JsonParser.parseJson(Files.readString(...)).getAsJsonObject();
 Localizer myLocalizer = (key, def) -> myTranslations.has(key)? myTranslations.get(key).getAsString() : def;
-Localizer.setInstance(myLocalizer);
+Localizer.setGlobal(myLocalizer);
 
 System.out.println(MY_MESSAGE.of("message"));
 ```

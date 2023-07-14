@@ -8,8 +8,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import nahara.common.attachments.Attachments;
+import nahara.common.localize.LocalizerProvider;
 import nahara.common.localize.Message;
 import nahara.spigot.items.BukkitStackBuilder;
 import nahara.spigot.menus.Menu;
@@ -17,11 +19,12 @@ import nahara.spigot.menus.SlotsFillers;
 import nahara.spigot.test.Main;
 
 public class StorageMenu extends Menu {
-	private static final Message STORAGE_TITLE = new Message("storage.title", "{} > My Storage");
-	private static final Message STORAGE_ITEMS_STORED = new Message("storage.itemsStored", "&7You have: &f{} &7items");
-	private static final Message STORAGE_LEFT_CLICK = new Message("storage.leftClick", "&6Left click &7to take all");
-	private static final Message STORAGE_RIGHT_CLICK = new Message("storage.rightClick", "&6Right click &7to take a stack");
-	private static final Message STORAGE_PUT_ALL = new Message("storage.putAll", "&6Left click &7to insert all materials from your inventory");
+	private static final LocalizerProvider LOCALIZER = () -> JavaPlugin.getPlugin(Main.class).getLocalizer();
+	private static final Message STORAGE_TITLE = new Message(LOCALIZER, "storage.title", "{} > My Storage");
+	private static final Message STORAGE_ITEMS_STORED = new Message(LOCALIZER, "storage.itemsStored", "&7You have: &f{} &7items");
+	private static final Message STORAGE_LEFT_CLICK = new Message(LOCALIZER, "storage.leftClick", "&6Left click &7to take all");
+	private static final Message STORAGE_RIGHT_CLICK = new Message(LOCALIZER, "storage.rightClick", "&6Right click &7to take a stack");
+	private static final Message STORAGE_PUT_ALL = new Message(LOCALIZER, "storage.putAll", "&6Left click &7to insert all materials from your inventory");
 
 	private Player owner;
 	private List<ItemStack> materials = new ArrayList<>();

@@ -18,12 +18,13 @@ import nahara.common.localize.Message;
 import net.md_5.bungee.api.ChatColor;
 
 public class SpigotCommand implements CommandExecutor, TabCompleter {
-	private static final Message COMMAND_ERROR = new Message("general.command.error", "&cError while performing command: &f{}");
+	private Message COMMAND_ERROR;
 	private nahara.common.commands.Command<SpigotCommandContext> command;
 	private Plugin plugin;
 
 	public SpigotCommand(nahara.common.commands.Command<SpigotCommandContext> command) {
 		this.command = command;
+		COMMAND_ERROR = new Message(command.provider, "general.command.error", "&cError while performing command: &f{}");
 	}
 
 	@Override
@@ -56,9 +57,5 @@ public class SpigotCommand implements CommandExecutor, TabCompleter {
 
 	public static Predicate<SpigotCommandContext> hasPermission(String permission) {
 		return v -> v.getSender().hasPermission(permission);
-	}
-
-	public static nahara.common.commands.Command<SpigotCommandContext> withName(String name) {
-		return new nahara.common.commands.Command<>(name);
 	}
 }
