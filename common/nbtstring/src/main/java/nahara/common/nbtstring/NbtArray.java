@@ -100,9 +100,15 @@ public class NbtArray extends Nbt {
 				index++;
 
 				ctx.skipWhitespaces();
-				if (ctx.next(',')) continue;
-				else if (ctx.next(']')) return out;
-				else ctx.invaild();
+				if (ctx.next(',')) {
+					ctx.skipWhitespaces();
+					continue;
+				} else if (ctx.next(']')) {
+					ctx.skipWhitespaces();
+					return out;
+				} else {
+					ctx.invaild();
+				}
 			}
 
 			return out;

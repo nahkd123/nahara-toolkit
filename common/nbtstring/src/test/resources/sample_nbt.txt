@@ -1,0 +1,27 @@
+{
+  Name: "&4Example Menu",
+  Menu: [
+    {
+      Select: {At: [0, 0]},
+      Id: "minecraft:diamond_sword",
+      Tag: {
+        display: {
+          Name: '{"text": "Iron Sword", "italic": false, "color": "white"}'
+        },
+        Lore: [
+          '{"text": "No it isn\'t!", "color": "#ff0000"}'
+        ]
+      },
+      OnClick: [
+        {
+          SendMessage: '{"text": "Opening MangoPlex Stonks2..."}',
+          Data: {Players: {Selector: "@p"}}
+        },
+        {
+          OpenMenu: "mangoplex:stonks2/market",
+          Data: {Player: {Selector: "@p"}}
+        }
+      ]
+    }
+  ]
+}

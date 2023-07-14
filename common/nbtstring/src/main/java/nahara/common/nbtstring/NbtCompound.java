@@ -87,9 +87,15 @@ public class NbtCompound extends Nbt {
 					out.set(key, value);
 					ctx.skipWhitespaces();
 
-					if (ctx.next(',')) continue;
-					else if (ctx.next('}')) return out;
-					else ctx.invaild();
+					if (ctx.next(',')) {
+						ctx.skipWhitespaces();
+						continue;
+					} else if (ctx.next('}')) {
+						ctx.skipWhitespaces();
+						return out;
+					} else {
+						ctx.invaild();
+					}
 				} else {
 					ctx.invaild();
 				}

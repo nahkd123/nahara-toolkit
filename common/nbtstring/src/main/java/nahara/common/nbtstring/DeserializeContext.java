@@ -42,7 +42,8 @@ public class DeserializeContext {
 	}
 
 	public void invaild() {
-		throw new IllegalArgumentException("Invaild input at position " + pos);
+		System.out.println("'" + input.substring(pos));
+		throw new IllegalArgumentException("Invaild input at position " + pos + ": " + input.substring(pos, Math.min(pos + 12, input.length())));
 	}
 
 	private static final Pattern WHITESPACES = Pattern.compile("^\\s*");
