@@ -1,8 +1,9 @@
 [
     'common/attachments',
     'common/commands',
-    'common/nbtstring',
     'common/localize',
+    'common/nbtstring',
+    'common/structures',
     'common/tasks',
 
     'spigot/commands',
