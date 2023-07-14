@@ -1,7 +1,7 @@
 # Nahara's Toolkit
 A set of (maybe?) useful libraries that you can use in your project.
 
-The original intention is to write libraries so that we can use them in small projects without rewriting too much code.
+The original intention is to write libraries so that I can use them in small projects without rewriting too much code.
 
 ## Using the toolkit
 _Maven repository will be provided in the future!_
@@ -26,4 +26,4 @@ Projects in ``spigot/`` can only be used with your Spigot plugins.
 Projects in ``fabric/`` are Fabric mods and they can be included in your mod with ``modImplementation include(...)`` in ``dependencies``.
 
 ## License
-This project is licensed under MIT license, except we haven't included license headers to our source code yet. We'll do that soon™.
+This project is licensed under MIT license, except we haven't included license headers to our source code yet. I'll do that soon™.
