@@ -5,34 +5,36 @@ plugins {
 def env = System.getenv()
 
 subprojects {
-    apply plugin: 'maven-publish'
     apply plugin: 'java-library'
+    if (project.noPublish == 'false') apply plugin: 'maven-publish'
 
     java {
         withSourcesJar()
     }
 
-    publishing {
-        publications {
-            mavenJava(MavenPublication) {
-                groupId = project.group
-                artifactId = "nahara-${project.name}"
-                version = project.version
-                from components.java
+    if (project.noPublish == 'false') {
+        publishing {
+            publications {
+                mavenJava(MavenPublication) {
+                    groupId = project.group
+                    artifactId = "nahara-${project.name}"
+                    version = project.version
+                    from components.java
+                }
             }
-        }
-
-        repositories {
-            mavenLocal()
-
-            if (env.mavenUrl) {
-                println "Maven Publish: Found Maven URL from envvar"
-                maven {
-                    url env.mavenUrl
-                    if (env.mavenUsername) {
-                        credentials {
-                            username env.mavenUsername
-                            password env.mavenPassword
+    
+            repositories {
+                mavenLocal()
+    
+                if (env.mavenUrl) {
+                    println "Maven Publish: Found Maven URL from envvar"
+                    maven {
+                        url env.mavenUrl
+                        if (env.mavenUsername) {
+                            credentials {
+                                username env.mavenUsername
+                                password env.mavenPassword
+                            }
                         }
                     }
                 }
