@@ -23,7 +23,7 @@ import net.md_5.bungee.chat.ComponentSerializer;
  * @author nahkd
  *
  */
-public class NaharaStack {
+public class NaharaStack implements ItemStackConvertable {
 	private NamespacedKey id;
 	private int amount;
 	private NbtCompound nbt;
@@ -86,6 +86,7 @@ public class NaharaStack {
 		return nbt;
 	}
 
+	@Override
 	public ItemStack toItemStack() {
 		var stack = Bukkit.getItemFactory().createItemStack(getId().toString() + getNbt().serializeAsString());
 		stack.setAmount(getAmount());

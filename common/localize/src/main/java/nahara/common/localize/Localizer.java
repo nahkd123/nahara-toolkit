@@ -2,18 +2,19 @@ package nahara.common.localize;
 
 import java.util.regex.Pattern;
 
+import nahara.common.attachments.Attachments;
+
 public interface Localizer {
 	public String translate(String key, String defaultMessage);
 
-	public static Localizer[] INSTANCE_REF = new Localizer[1];
 	public static final Pattern PLACEHOLDER = Pattern.compile("\\{([0-9]*)\\}");
 
 	public static Localizer getInstance() {
-		return INSTANCE_REF[0];
+		return Attachments.getGlobal().get(Localizer.class, Localizer.class);
 	}
 
 	public static void setInstance(Localizer localizer) {
-		INSTANCE_REF[0] = localizer;
+		Attachments.getGlobal().set(Localizer.class, Localizer.class, localizer);
 	}
 
 	public static String of(String key, String defaultMessage, String... replaces) {

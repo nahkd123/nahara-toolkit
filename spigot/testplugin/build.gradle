@@ -19,6 +19,7 @@ dependencies {
     implementation shadow(project(':spigot-naharakit'))
     implementation shadow(project(':spigot-commands'))
     implementation shadow(project(':spigot-items'))
+    implementation shadow(project(':spigot-menus'))
 }
 
 println "${project.name}: Targetting Minecraft version ${project.minecraft_version} (API Version ${project.api_version})"

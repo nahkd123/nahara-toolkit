@@ -1,4 +1,5 @@
 [
+    'common/attachments',
     'common/commands',
     'common/nbtstring',
     'common/localize',
@@ -6,6 +7,7 @@
 
     'spigot/commands',
     'spigot/items',
+    'spigot/menus',
     'spigot/naharakit',
     'spigot/testplugin'
 ].each { v ->

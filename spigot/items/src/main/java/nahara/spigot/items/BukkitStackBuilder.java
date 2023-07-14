@@ -12,8 +12,9 @@ import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import nahara.common.nbtstring.NbtCompound;
+import net.md_5.bungee.api.ChatColor;
 
-public class BukkitStackBuilder {
+public class BukkitStackBuilder implements ItemStackConvertable {
 	private ItemStack base;
 	private ItemMeta meta;
 
@@ -22,19 +23,23 @@ public class BukkitStackBuilder {
 		this.meta = base.getItemMeta();
 	}
 
-	public BukkitStackBuilder name(String name) {
-		this.meta.setLocalizedName(name);
-		return this;
+	public BukkitStackBuilder(Material material, int amount) {
+		this(new ItemStack(material, amount));
 	}
 
-	public BukkitStackBuilder anvilName(String name) {
-		this.meta.setDisplayName(name);
+	public BukkitStackBuilder(Material material) {
+		this(material, 1);
+	}
+
+	public BukkitStackBuilder name(String name) {
+		this.meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
 		return this;
 	}
 
 	public BukkitStackBuilder lore(Consumer<Consumer<String>> emitter, boolean clear) {
-		var lore = (clear && meta.hasLore())? new ArrayList<String>() : meta.getLore();
-		emitter.accept(lore::add);
+		var lore = (clear || !meta.hasLore())? new ArrayList<String>() : meta.getLore();
+		emitter.accept(v -> lore.add(ChatColor.translateAlternateColorCodes('&', v)));
+		meta.setLore(lore);
 		return this;
 	}
 
@@ -70,7 +75,9 @@ public class BukkitStackBuilder {
 		return this;
 	}
 
-	public ItemStack get() {
+	@Override
+	public ItemStack toItemStack() {
+		base.setItemMeta(meta);
 		return base;
 	}
 }

@@ -9,3 +9,5 @@ api-version: ${api}
 commands:
   test:
     description: "haha testing time!"
+  storage:
+    description: "Demo: Open player's materials storage"

@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 
 import nahara.common.commands.AbstractCommandContext;
 import nahara.common.commands.Command;
@@ -28,6 +29,10 @@ public class SpigotCommandContext extends AbstractCommandContext {
 
 	public CommandSender getSender() {
 		return inputs.sender();
+	}
+
+	public Plugin getPlugin() {
+		return inputs.plugin();
 	}
 
 	public Optional<Player> getPlayer() {
