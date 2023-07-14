@@ -13,8 +13,8 @@ public abstract class Nbt {
 		Nbt out;
 		if ((out = NbtCompound.deserialize(ctx)) != null) return out;
 		if ((out = NbtNumber.deserialize(ctx)) != null) return out;
-		if ((out = NbtString.deserialize(ctx)) != null) return out;
 		if ((out = NbtArray.deserialize(ctx)) != null) return out;
+		if ((out = NbtString.deserialize(ctx)) != null) return out;
 		return null;
 	}
 

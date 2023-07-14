@@ -21,7 +21,7 @@ class NbtArrayTest {
 			arr.getOrCreate(1, NbtString::new).string().setText("the sus");
 			return arr;
 		}).get().serializeAsString());
-		assertEquals("[\"the sus\"]", ((Supplier<NbtArray>) () -> {
+		assertEquals("[null,\"the sus\"]", ((Supplier<NbtArray>) () -> {
 			var arr = new NbtArray();
 			arr.getOrCreate(1, NbtString::new).string().setText("the sus");
 			return arr;
@@ -35,7 +35,6 @@ class NbtArrayTest {
 		assertEquals(2, NbtArray.deserialize(new DeserializeContext("[\"sus\", \"sus2\"]", 0)).size());
 		assertEquals(2, NbtArray.deserialize(new DeserializeContext("[\"sus\", \"sus2\",]", 0)).size());
 		assertEquals(10, NbtArray.deserialize(new DeserializeContext("[\"sus\", \"sus2\", 9: \"sus10\"]", 0)).size());
-
-		assertEquals(5, Nbt.fromString("[{}, [], \"\", [], {}]").array());
+		assertEquals(5, Nbt.fromString("[{}, [], \"\", [], {}]").array().size());
 	}
 }
