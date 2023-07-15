@@ -5,6 +5,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
+import nahara.common.attachments.Attachments;
 import nahara.common.commands.Command;
 import nahara.common.localize.Localizer;
 import nahara.common.localize.LocalizerProvider;
@@ -97,6 +98,10 @@ public abstract class NaharaPlugin extends JavaPlugin implements LocalizerProvid
 	public void onDisable() {
 		try {
 			onPluginStop();
+			for (var p : getServer().getOnlinePlayers()) {
+				var menu = Attachments.getGlobal().get(p, Menu.class);
+				if (menu != null) p.closeInventory();
+			}
 		} catch (UserErrorException e) {
 			getLogger().severe("An user error has been captured: " + e.getMessage());
 		}
