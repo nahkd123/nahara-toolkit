@@ -68,6 +68,7 @@ dependencies {
 Projects in ``common/`` can be used without having running instance of Minecraft server.
 
 - ``nahara-common-commands``: Commands executor and parser. Originally designed for Spigot commands but it can be used outside Spigot!
+- ``nahara-common-configurations``: Configurations thing, with syntax similar to YAML.
 - ``nahara-common-localize``: Localize package.
 - ``nahara-common-nbtstring``: Convert NBT data from and to string. Mainly used for creating items with custom NBT data without touching the nasty NMS. That said, if you still wanted to touch NMS, you better use Fabric already.
 - ``nahara-common-tasks``: Async tasks system. An attempt to bring ``async/await`` and ``Promise`` from JavaScript. Designed for fast code writing in mind.

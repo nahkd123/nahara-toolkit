@@ -1,6 +1,7 @@
 [
     'common/attachments',
     'common/commands',
+    'common/configurations',
     'common/localize',
     'common/nbtstring',
     'common/structures',
