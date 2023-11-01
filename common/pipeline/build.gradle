@@ -2,7 +2,7 @@ plugins {
 }
 
 eclipse {
-    project.name = "Nahara Toolkit - Common - NBT String"
+    project.name = "Nahara Toolkit - Common - Pipeline"
 }
 
 repositories {

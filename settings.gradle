@@ -8,6 +8,7 @@ plugins {
     'common/configurations',
     'common/localize',
     'common/nbtstring',
+    'common/pipeline',
     'common/structures',
     'common/tasks',
 
