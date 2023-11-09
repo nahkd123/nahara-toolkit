@@ -9,6 +9,7 @@ plugins {
     'common/localize',
     'common/nbtstring',
     'common/pipeline',
+    'common/reflective',
     'common/structures',
     'common/tasks',
 
